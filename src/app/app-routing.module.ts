@@ -4,8 +4,8 @@ import { AboutComponent } from './about/about.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'about', component: AboutComponent },
+  { path: 'dashboard', component: DashboardComponent }, //whatever routes, we have mentioned here will get called in the app.module
+  { path: 'about', component: AboutComponent }, //since app.module is importing this class 'app-routing.module'ng
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, //takes to default page
 ];
 
