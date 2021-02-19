@@ -14,6 +14,11 @@ import { AboutComponent } from '../about/about.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    DashboardComponent,
+    MyProfileComponent,
+    AboutComponent
   ]
 })
 export class AdminModule { }
