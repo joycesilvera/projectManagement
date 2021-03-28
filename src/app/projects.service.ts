@@ -16,4 +16,10 @@ export class ProjectsService {
   {
     return this.httpClient.get<Project[]>("/api/projects");
   }
+
+    //ready to return an array of Project that is received from server as response
+  insertProject(newProject: Project) : Observable<Project>
+    {
+      return this.httpClient.post<Project>("/api/projects", newProject);
+    }
 }
