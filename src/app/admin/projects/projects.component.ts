@@ -14,6 +14,8 @@ export class ProjectsComponent implements OnInit {
   editIndex: number = null;
   deleteProject: Project = new Project();
   deleteIndex: number = null;
+  searchBy: string = 'ProjectName';
+  searchText: string = '';
 
   constructor(private projectsService: ProjectsService) {}
 
@@ -95,5 +97,18 @@ export class ProjectsComponent implements OnInit {
       (error) => {
         console.log(error);
       });
+  }
+
+  onSearchClick() {
+    this.projectsService
+      .SearchProjects(this.searchBy, this.searchText)
+      .subscribe(
+        (response: Project[]) => {
+          this.projects = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }
