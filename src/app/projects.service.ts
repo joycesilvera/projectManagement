@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { Project } from './project';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsService {
-
-  //since it is private the ref will be accessed in all the methods of the current service
-  constructor(private httpClient : HttpClient) { } //here httpClient is ref to access obj of HttpClient service
-
-  //ready to return an array of Project that is received from server as response
-  getAllProjects() : Observable<Project[]>
+export class ProjectsService
+{
+  constructor(private httpClient : HttpClient)
   {
-    return this.httpClient.get<Project[]>("/api/projects");
   }
 
-    //ready to return an array of Project that is received from server as response
+  getAllProjects() : Observable<Project[]>
+  {
+    return this.httpClient.get<Project[]>("/api/projects", { responseType: "json" });
+  }
+
   insertProject(newProject: Project) : Observable<Project>
-    {
-      return this.httpClient.post<Project>("/api/projects", newProject);
-    }
+  {
+    return this.httpClient.post<Project>("/api/projects", newProject, { responseType: "json" });
+  }
+
+  updateProject(existingProject: Project) : Observable<Project>
+  {
+    return this.httpClient.put<Project>("/api/projects", existingProject, { responseType: "json" });
+  }
+
+  deleteProject(ProjectID: number) : Observable<string>
+  {
+    return this.httpClient.delete<string>("/api/projects?ProjectID=" + ProjectID);
+  }
 }
