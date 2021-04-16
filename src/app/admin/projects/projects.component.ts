@@ -26,9 +26,11 @@ export class ProjectsComponent implements OnInit {
   }
 
   onSaveClick() {
+    debugger;
     this.projectsService.insertProject(this.newProject).subscribe(
       (response) => {
         //Add Project to Grid
+        debugger;
         var p: Project = new Project();
         p.projectID = response.projectID;
         p.projectName = response.projectName;
@@ -41,14 +43,18 @@ export class ProjectsComponent implements OnInit {
         this.newProject.projectName = null;
         this.newProject.dateOfStart = null;
         this.newProject.teamSize = null;
+        debugger;
       },
       (error) => {
+        debugger;
         console.log(error);
+        debugger;
       }
     );
   }
 
   onEditClick(event, index: number) {
+    debugger;
     this.editProject.projectID = this.projects[index].projectID;
     this.editProject.projectName = this.projects[index].projectName;
     this.editProject.dateOfStart = this.projects[index].dateOfStart;
@@ -57,8 +63,10 @@ export class ProjectsComponent implements OnInit {
   }
 
   onUpdateClick() {
+    debugger;
     this.projectsService.updateProject(this.editProject).subscribe(
       (response: Project) => {
+        debugger;
         var p: Project = new Project();
         p.projectID = response.projectID;
         p.projectName = response.projectName;
@@ -70,8 +78,10 @@ export class ProjectsComponent implements OnInit {
         this.editProject.projectName = null;
         this.editProject.dateOfStart = null;
         this.editProject.teamSize = null;
+        debugger;
       },
       (error) => {
+        debugger;
         console.log(error);
       }
     );
@@ -96,7 +106,8 @@ export class ProjectsComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      });
+      }
+    );
   }
 
   onSearchClick() {
